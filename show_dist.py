@@ -118,7 +118,7 @@ sns.distplot(
     data,
     bins=data.max() - data.min(),
     ax=ax[0],
-    label='HSSAL',
+    label='HSLSA',
     color=colors[1]
 )
 data = extra_move_df['hybrid_right_bay']
@@ -126,10 +126,10 @@ sns.distplot(
     data,
     bins=data.max() - data.min(),
     ax=ax[0],
-    label='HSSAR',
+    label='HSRSA',
     color=colors[2]
 )
-ax[0].set(xlabel='Extra Movements', ylabel='Frequency', title='Extra Movements with HSSA, HSSAL and HSSAR')
+ax[0].set(xlabel='Extra Movements', ylabel='Frequency', title='Extra Movements with HSSA, HSLSA and HSRSA')
 
 data = rehandling_df['hybrid_bay']
 sns.distplot(
@@ -146,7 +146,7 @@ sns.distplot(
     bins=data.max() - data.min(),
     kde_kws={'bw': 0.32},
     ax=ax[1],
-    label='HSSAL',
+    label='HSLSA',
     color=colors[1]
 )
 data = rehandling_df['hybrid_right_bay']
@@ -155,10 +155,10 @@ sns.distplot(
     bins=data.max() - data.min(),
     kde_kws={'bw': 0.32},
     ax=ax[1],
-    label='HSSAR',
+    label='HSRSA',
     color=colors[2]
 )
-ax[1].set(xlabel='Rehandling', ylabel='Frequency', title='Rehandling with HSSA, HSSAL and HSSAR')
+ax[1].set(xlabel='Rehandling', ylabel='Frequency', title='Rehandling with HSSA, HSLSA and HSRSA')
 
 ax[0].legend()
 ax[1].legend()
