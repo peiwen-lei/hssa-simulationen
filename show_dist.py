@@ -69,7 +69,7 @@ sns.distplot(
     label='VSA',
     color=colors[2]
 )
-ax[0].set(xlabel='Extra Movements', ylabel='Frequency', title='Extra Movements with HSSA and VSA')
+ax[0].set(xlabel='Extra Movements', ylabel='Wahrscheinlichkeit', title='Extra Movements mit HSSA und VSA')
 
 data = rehandling_df['hybrid_bay']
 sns.distplot(
@@ -98,7 +98,7 @@ sns.distplot(
     label='VSA',
     color=colors[2]
 )
-ax[1].set(xlabel='Rehandling', ylabel='Frequency', title='Rehandling with HSSA, VSA and RSA')
+ax[1].set(xlabel='Rehandling', ylabel='Wahrscheinlichkeit', title='Rehandling mit HSSA, VSA und RSA')
 
 ax[0].legend()
 ax[1].legend()
@@ -129,7 +129,7 @@ sns.distplot(
     label='HSRSA',
     color=colors[2]
 )
-ax[0].set(xlabel='Extra Movements', ylabel='Frequency', title='Extra Movements with HSSA, HSLSA and HSRSA')
+ax[0].set(xlabel='Extra Movements', ylabel='Wahrscheinlichkeit', title='Extra Movements mit HSSA, HSLSA und HSRSA')
 
 data = rehandling_df['hybrid_bay']
 sns.distplot(
@@ -158,7 +158,7 @@ sns.distplot(
     label='HSRSA',
     color=colors[2]
 )
-ax[1].set(xlabel='Rehandling', ylabel='Frequency', title='Rehandling with HSSA, HSLSA and HSRSA')
+ax[1].set(xlabel='Rehandling', ylabel='Wahrscheinlichkeit', title='Rehandling mit HSSA, HSLSA und HSRSA')
 
 ax[0].legend()
 ax[1].legend()

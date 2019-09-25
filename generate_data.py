@@ -4,6 +4,7 @@ import os
 import time
 
 
+# Calculate the sum of extra movements when putting all containers into the bay
 def calc_extra_moves(bay, sequence):
     input_containers = sequence.get_iterator(bay)
     extra_move_sum = 0
@@ -12,6 +13,7 @@ def calc_extra_moves(bay, sequence):
     return extra_move_sum
 
 
+# Calculate the sum of rehandling when retrieving all containers from the bay
 def calc_rehandling(bay, sequence):
     output_containers = sequence.get_iterator(bay)
     rehandling_sum = 0
@@ -24,7 +26,7 @@ def calc_rehandling(bay, sequence):
 HEIGHTS = [4, 5, 6]
 WIDTHS = [6, 7, 8]
 
-SAMPLE_COUNT = 30001
+SAMPLE_COUNT = 30000
 
 for w in WIDTHS:
     for h in HEIGHTS:

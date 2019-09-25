@@ -34,8 +34,12 @@ class Bay(ABC):
         :return: the number of extra movements involved when putting the container
         """
 
-    # Take a container with given weight out of the bay, returning the rehandling needed for this container
     def take(self, weight):
+        """
+        Take a container with given weight out of the bay
+        :param weight: the weight of the container to be taken out
+        :return: the rehandling needed for this container
+        """
         for s in self.stacks:
             row_idx = s.find_by_weight(weight)
             if row_idx is not None:
@@ -47,19 +51,7 @@ class Bay(ABC):
         raise Exception(
             'Removing non-existing container with weight ' + str(weight))
 
-    # # TODO: update this method
-    # def take_by_weight_level(self, container):
-    #     for s in self.stacks:
-    #         row_idx = s.find_by_weight(container)
-    #         if row_idx is not None:
-    #             # rh is short for rehandling. This is the rehandling needed to retrieve the container
-    #             rh_count = s.get_available_index() - row_idx - 1
-    #             s.remove(row_idx)
-    #             self._available_slots.update(s)
-    #             return rh_count
-    #     raise Exception(
-    #         'Removing non-existing container with weight ' + str(container.weight))
-
+    # Populate the bay with containers. This method is mainly used in testing
     def populate(self, layers):
         for layer in layers:
             for i, container in enumerate(layer):
@@ -100,38 +92,60 @@ class Stack:
         self._height = height
         self._slots = []
 
-    # Put a container into the stack
-    # Return the new available index for this stack
     def put(self, container):
+        """
+        Put a container into the stack
+        :param container: the container to be put into the stack
+        :return: the index of the new available slot for this stack
+        """
         if self.is_full():
             raise Exception('Stack ' + str(self.index) + ' is already full!')
         else:
             self._slots.append(container)
             return self.get_available_index()
 
-    # Get the currently available slot index in this stack
     def get_available_index(self):
+        """
+        Get the currently available slot index in this stack
+        :return: the currently available slot index of this stack
+        """
         return len(self._slots)
 
-    # Check whether this stack is full
     def is_full(self):
+        """
+        Check whether this stack is full
+        :return: true if stack is full, false otherwise
+        """
         return len(self._slots) >= self._height
 
-    # Find a container with given weight in this stack and returns its index
     def find_by_weight(self, weight):
+        """
+        Find a container in a stack with the given weight
+        :param weight: the weight of the container to be found
+        :return: the found container, None if no container with the given weight is found
+        """
         for c in reversed(self._slots):
             if c.weight == weight:
                 return self._slots.index(c)
         return None
 
-    # Get the container in the given index
     def get(self, index):
+        """
+        Get the container in the given index
+        :param index: index to retrieve container
+        :return: the container retrieved
+        """
         if len(self._slots) > index:
             return self._slots[index]
         else:
             return None
 
     def remove(self, idx):
+        """
+        Remove the container in the given index
+        :param idx: the index to remove the container
+        :return: the removed container
+        """
         return self._slots.pop(idx)
 
 
@@ -148,10 +162,19 @@ class AvailableSlotManger:
                 else s.get_available_index()
 
     def update(self, stack):
+        """
+        Update the status of the given stack
+        :param stack: the stack to be updated
+        :return: None
+        """
         self._slots[stack.index] = -1 if stack.is_full() \
             else stack.get_available_index()
 
     def get(self):
+        """
+        Get the currently available slots
+        :return: a dictionary with the stack index as key, and the available slot index of each stack as value
+        """
         return {x_idx: Slot(x_idx, y_idx) for x_idx, y_idx in self._slots.items() if y_idx >= 0}
 
 
@@ -163,6 +186,10 @@ class Slot:
         self.y_idx = y_idx
 
     def get_center(self):
+        """
+        Get the geometry center of this slot
+        :return: A Point object which is the geometry center of this slot
+        """
         return Point(self.x_idx + 0.5, self.y_idx + 0.5)
 
     def __eq__(self, other):
@@ -231,6 +258,11 @@ class ContainerGeneratorIterator:
         self._iter_tracker = 0
 
     def create_weight_level_list(self):
+        """
+        Create a list. The order of the list represents container from the lightest to the heaviest.
+        The value of the list represents the weight level of the corresponding container in that position.
+        :return: The above mentioned list.
+        """
         bay = self._bay
         total = bay.height * bay.width
         # Make a list

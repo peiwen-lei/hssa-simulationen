@@ -5,7 +5,6 @@ from bays.common import Bay, Slot, Point
 
 class HybridBay(Bay):
 
-    # Get the maximum weight level of this block
     def get_max_weight_level(self):
         return self.width + self.height - 1
 

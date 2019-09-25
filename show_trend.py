@@ -4,15 +4,15 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 folder_names = [
-    'data/w6_h4_s30001',
-    'data/w7_h4_s30001',
-    'data/w8_h4_s30001',
-    'data/w6_h5_s30001',
-    'data/w7_h5_s30001',
-    'data/w8_h5_s30001',
-    'data/w6_h6_s30001',
-    'data/w7_h6_s30001',
-    'data/w8_h6_s30001'
+    'data/w6_h4_s30000',
+    'data/w7_h4_s30000',
+    'data/w8_h4_s30000',
+    'data/w6_h5_s30000',
+    'data/w7_h5_s30000',
+    'data/w8_h5_s30000',
+    'data/w6_h6_s30000',
+    'data/w7_h6_s30000',
+    'data/w8_h6_s30000'
 ]
 
 extra_move_dfs = []
@@ -38,14 +38,14 @@ sns.set_style('whitegrid')
 fig, ax = plt.subplots(2)
 
 sns.boxplot(data=extra_move_data, x='width', y='hybrid_bay', hue='height', dodge=True, ax=ax[0], showfliers=False)
-ax[0].set(xlabel='Width', ylabel='Extra Movements (Normalized)',
-          title='Extra Movements with Different Bay Dimensions')
+ax[0].set(xlabel='Breite', ylabel='Extra Movements (Normiert)',
+          title='Extra Movements mit Unterschiedlichen Bay-Dimensionen')
 
 sns.boxplot(data=rehandling_data, x='width', y='hybrid_bay', hue='height', dodge=True, ax=ax[1], showfliers=False)
-ax[1].set(xlabel='Width', ylabel='Rehandling (Normalized)',
-          title='Rehandling with Different Bay Dimensions')
+ax[1].set(xlabel='Breite', ylabel='Rehandling (Normiert)',
+          title='Rehandling mit Unterschiedlichen Bay-Dimensionen')
 
-ax[0].legend(title='Height')
-ax[1].legend(title='Height')
+ax[0].legend(title='Höhe')
+ax[1].legend(title='Höhe')
 
 plt.show()
